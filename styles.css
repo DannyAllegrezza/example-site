@@ -1,0 +1,176 @@
+:root {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    /* css variables */
+    --yellow: #eabd00;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #131318;
+    --scrollbar-track: var(--bg-primary);
+    --scrollbar-thumb: var(--yellow);
+    --transition-speed: 800ms;
+}
+
+body {
+    color:black;
+    background-color:white;
+    margin: 0;
+    padding: 0;
+}
+
+body::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+}
+
+main {
+    /* rem (root element)
+    The size here will stay relative to the font-size on the root element.
+    Even if we go and change our font-size, everything will stay proportional.
+    */
+    margin-left: 5rem; /* 5rem * 18px = 90px */
+    padding: 1rem; /* 1rem * 18px = 18px :) */
+}
+
+.nav {
+
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: 300ms ease;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-item {
+    width: 100%;
+}
+
+.nav-item:last-child {
+    margin-top: auto;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.5);
+    transition: var(--transition-speed);
+}
+
+.nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.nav-link-text {
+    display: none;
+    margin-left: 1rem;
+}
+
+.nav-link svg {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.svg-inline--fa {
+    color: var(--yellow);
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.logo svg {
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
+}
+
+.logo-text
+{
+  display: inline;
+  position: absolute;
+  left: -999px;
+  transition: var(--transition-speed);
+}
+
+.nav:hover .logo svg {
+  transform: rotate(-360deg);
+}
+
+
+@media only screen and (max-width: 600px) {
+    .nav {
+        bottom: 0;
+        width: 100vw;
+        height: 5rem;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .nav-list {
+        flex-direction: row;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+
+    main {
+        margin: 0;
+    }
+}
+
+/* large screens */
+@media only screen and (min-width: 600px) {
+    .nav {
+        width: 5rem;
+        /* vh (viewport height)
+        A percentage of the full viewport height.
+        100vh resolves to 100% of the current viewport height.
+        */
+        height: 100vh;
+        top: 0;
+    }
+
+    .nav:hover {
+        width: 16rem;
+    }
+
+    .nav:hover .nav-link-text {
+        display: inline;
+    }
+
+    .nav:hover .logo-text {
+        left: 4rem;
+    }
+}
